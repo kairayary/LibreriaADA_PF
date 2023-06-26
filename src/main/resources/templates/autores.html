@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Autores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+<nav class="navbar" style="background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);">
+    <div class="container-fluid d-flex justify-content-evenly">
+        <a class="navbar-brand" href="#" style="font-family: 'Kaushan Script', cursive; color:red">
+            <img src="https://cdn-icons-png.flaticon.com/512/2038/2038116.png"
+                 alt="Logo" width="100" height="54" class="d-inline-block align-self-center">
+            LIBRERIA ADA
+        </a>
+
+        <ul class="nav justify-content-center gap-3">
+            <li class="nav-item">
+                <a class="btn btn-outline-danger " th:href="@{/libros}"> Control Libros <i class="bi bi-journals"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-danger " th:href="@{/autores}"> Control Autores <i class="bi bi-person-fill-check"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-danger " th:href="@{/autores/nuevo}"> Registro Autores <i class="bi bi-person-fill-add"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-danger " th:href="@{/libros/nuevo}"> Registro Libros <i class="bi bi-journals"></i></a>
+            </li>
+
+        </ul>
+        <div>
+            <a type="button" class="btn btn-outline-danger " th:href="@{/}"> INICIO <i class="bi bi-house-fill"></i></a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container my-5">
+    <div th:if="${msgExito != null}" class="alert alert-success alert-dismissible">
+        [[${msgExito}]]
+        <button type="button" class="btn btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+    <br>
+
+    <div class="container my-5">
+        <div class="row border border-danger bg-warning-subtle rounded-pill">
+            <h1 style="text-align:center; color:#b90a28" class="p-3 mb-2 "><i class="bi bi-person-lines-fill"></i><em> CONTROL Y LISTA DE AUTORES </em> <i class="bi bi-person-lines-fill"></i></h1>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <a th:href="@{/autores/nuevo}" class="btn btn-danger"> Agregar autor<i class="bi bi-person-fill-add"></i></a>
+            </div>
+        </div>
+
+        <br>
+
+        <table class="table table-hover" style="text-align:center">
+            <thead class="table" style="background: rgb(222,30,50);
+background: linear-gradient(157deg, rgba(222,30,50,1) 18%, rgba(230,109,105,1) 54%, rgba(230,9,32,1) 100%);">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Lugar de Nacimiento</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="autor : ${autores}">
+                <td th:text="${autor.nombre}">Nombre</td>
+                <td th:text="${autor.apellido}">Nombre</td>
+                <td th:text="${autor.lugarNacimiento}">Nombre</td>
+                <td
+                        th:text="${#temporals.format(autor.fechaNacimiento,'dd/MM/YYYY')}"></td>
+                <td>
+                    <a th:href="@{/autores/editar/{id}(id=${autor.id})}"  class="btn btn-info"><i class="bi bi-person-fill-gear"></i> Editar</a>
+                    <a  style="background:#b90a28" href="#" onclick="eliminarAutor(this)" class="btn"><i class="bi bi-person-fill-slash"></i> Eliminar</a>
+
+                    <form th:action="@{/eliminar/{id}(id=${autor.id})}" method="post"></form>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+<script>
+                function eliminarAutor(elemento){
+                var ok = confirm('No hay REGITRO  de LIBROS con este autor, ¿DESEA ELIMINAR EL AUTOR?');
+
+                if(ok){
+                elemento.nextElementSibling.submit();
+                }
+              }
+           </script>
+</body>
+</html>
