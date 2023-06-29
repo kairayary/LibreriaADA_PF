@@ -41,7 +41,7 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
   </div>
 </nav>
 
-<main>
+<main style="height: 750px;">
   <div class="container my-5">
     <div class="row d-flex justify-content-around">
 
@@ -49,18 +49,18 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
           <img src="https://i.ibb.co/yV4QVqw/fondo-libreria.png">
         </div>
       <div class="col">
-        <div class="">
+
           <div class="">
-            <h1 style="text-align:center; color:#f2931d; background:#755a91" class="p-3 mb-2 rounded-4 text-white"><em> ADMINISTRACIÓN DE LIBRO </em></h1>
+            <h1  style="text-align:center; color:#e8ab2c; background:#755a91" class="p-3 mb-2"><em> ADMINISTRACIÓN DE LIBRO </em></h1>
           </div>
 
-          <div class="card-body">
+          <div class="body">
             <form th:action="@{/libros}" th:object="${libro}" method="POST">
 
               <div class="form-group">
                 <label style="color:#f4921d">ISBN </label>
                 <input type="number" name="isbn" th:field="*{isbn}" class="form-control"
-                       placeholder="Digite el isbn :" required>
+                       placeholder="Indique el isbn" required>
               </div>
 
 
@@ -106,15 +106,14 @@ background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 
 
             </form>
           </div>
-
-        </div>
-
       </div>
     </div>
   </div>
 
 </main>
-
+<div style="background: #b3cceb; height: 90px" class="text-center  ">
+  <h5 class="pt-5 text-danger">Copyright<i class="bi bi-c-circle"></i>2023, kaira Abréu|Derechos Reservados</h5>
+</div>
 </body>
 
 </html>

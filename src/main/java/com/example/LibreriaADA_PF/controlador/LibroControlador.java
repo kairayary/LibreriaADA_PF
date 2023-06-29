@@ -23,10 +23,17 @@ public class LibroControlador {
 
     @Autowired
     private AutorServicio autorServicio;
-
+    @GetMapping("/login")
+    public String iniciarSesion(){
+        return "login";
+    }
+    @GetMapping("/")
+    public String verPaginaDeInicio(){
+        return "inicio";
+    }
     @GetMapping("/index")
     public String paginaPrincipal(){
-        return "home";
+        return "index";
     }
 
     @GetMapping("/libros")
